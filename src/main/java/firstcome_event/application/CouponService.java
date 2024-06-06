@@ -11,9 +11,12 @@ import org.springframework.transaction.annotation.Transactional;
 public class CouponService {
 
     private final CouponRepository couponRepository;
+    private final SchedulingQueue schedulingQueue;
 
-    public CouponService(final CouponRepository couponRepository) {
+    public CouponService(final CouponRepository couponRepository,
+                         final SchedulingQueue schedulingQueue) {
         this.couponRepository = couponRepository;
+        this.schedulingQueue = schedulingQueue;
     }
 
     @Transactional
@@ -25,12 +28,16 @@ public class CouponService {
     }
 
     @Transactional
-    public void registerCoupon(final long memberId) {
+    public void registerCoupon1(final long memberId) {
         try {
             CouponJpaEntity couponJpaEntity = couponRepository.findFirstCouponWithLock();
             couponJpaEntity.updateCouponStatus(memberId);
         } catch (NullPointerException e) {
             log.info("선착순 마감되었습니다!");
         }
+    }
+
+    public void registerCoupon2(final long memberId) {
+        schedulingQueue.add(memberId);
     }
 }

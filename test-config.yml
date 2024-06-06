@@ -11,4 +11,4 @@ config:
 scenarios:
   - flow:
       - post:
-          url: "/register/{{ memberId }}"
+          url: "/register2/{{ memberId }}"

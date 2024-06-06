@@ -19,8 +19,13 @@ public class CouponController {
         couponService.issueCoupon("쿠폰 이름");
     }
 
-    @PostMapping("/register/{memberId}")
-    public void registerCoupon(@PathVariable final long memberId) {
-        couponService.registerCoupon(memberId);
+    @PostMapping("/register1/{memberId}")
+    public void registerCoupon1(@PathVariable final long memberId) {
+        couponService.registerCoupon1(memberId);
+    }
+
+    @PostMapping("/register2/{memberId}")
+    public void registerCoupon2(@PathVariable final long memberId) {
+        couponService.registerCoupon2(memberId);
     }
 }
