@@ -1,0 +1,14 @@
+config:
+  target: 'http://localhost:8080'
+  phases:
+    - duration: 10
+      arrivalRate: 1000
+  payload:
+    path: "numbers.csv"
+    fields:
+      - "memberId"
+
+scenarios:
+  - flow:
+      - post:
+          url: "/register/{{ memberId }}"
