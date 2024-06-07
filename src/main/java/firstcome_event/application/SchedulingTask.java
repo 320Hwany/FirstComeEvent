@@ -16,7 +16,7 @@ public class SchedulingTask {
         this.couponService = couponService;
     }
 
-    @Scheduled(fixedRate = 500)
+    @Scheduled(fixedRate = 200)
     public void processSchedulingTasks() {
         for (int i = 0; i < 100 && !schedulingQueue.isEmpty(); i++) {
             long memberId = schedulingQueue.peek();

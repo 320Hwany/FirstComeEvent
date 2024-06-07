@@ -30,9 +30,10 @@ public class CouponService {
     @Transactional
     public void registerCoupon1(final long memberId) {
         try {
+            Thread.sleep(100);
             CouponJpaEntity couponJpaEntity = couponRepository.findFirstCouponWithLock();
             couponJpaEntity.updateCouponStatus(memberId);
-        } catch (NullPointerException e) {
+        } catch (NullPointerException | InterruptedException e) {
             log.info("선착순 마감되었습니다!");
         }
     }
